@@ -1,0 +1,202 @@
+\documentclass{book}
+\usepackage{amsmath, amssymb}
+\usepackage{amsthm}
+\usepackage{amsfonts}
+\usepackage{amsmath}
+\usepackage{amssymb}
+
+\usepackage{mathrsfs}
+\newtheorem*{theorem}{Theorem}
+\newtheorem*{esercizio}{Esercizio}
+
+\begin{document}
+
+\chapter{TdM}
+    
+
+\textbf{Esercizio 2.18.} Siano $M \prec N$ e $\phi(x,z) \in L$.\\
+Supponiamo che esista un numero finito di insiemi della forma $\phi(a,N)$ al variare di $a \in N^{|x|}$.\\
+Dimostrare che tali insiemi sono definibili su $M$.
+
+\bigskip
+
+\textbf{Dimostrazione.} 
+Siano $\{\phi(a_1,N), \ldots, \phi(a_k,N)\}$ tutti e soli gli insiemi distinti di tale forma, con $\phi(a_i,N) \neq \emptyset$ per ogni $i$.
+
+Se tale insieme è vuoto (cioè $k = 0$), allora la tesi è banalmente vera.
+
+Supponiamo quindi che tali insiemi siano non vuoti. Allora
+\[
+N \models \exists x \exists y\, \phi(x,y).
+\]
+Poiché $M \equiv N$ (essendo $M \prec N$), segue che
+\[
+M \models \exists x \exists y\, \phi(x,y).
+\]
+Quindi, per qualche $b \in M$,
+\[
+M \models \exists y\, \phi(b,y).
+\]
+Da $M \prec N$ segue che
+\[
+N \models \exists y\, \phi(b,y),
+\]
+ossia $\phi(b,N) \neq \emptyset$. Allora $\phi(b,N) \in \{\phi(a_1,N), \ldots, \phi(a_k,N)\}$. Senza perdita di generalità, possiamo supporre $\phi(b,N) = \phi(a_1,N)$.
+
+Consideriamo ora la seguente formula:
+\[
+N \models \exists y\, \phi(a_2,y) \land \exists z\, \big( \phi(a_2,z) \iff \neg \phi(b,z) \big).
+\]
+Questo vale poiché $\phi(a_2,N) \neq \phi(a_1,N) = \phi(b,N)$.
+
+Poiché $M \prec N$, segue che:
+\[
+M \models \exists x \exists y\, \phi(x,y) \land \exists z\, ( \phi(x,z) \land \neg \phi(b,z) ).
+\]
+Quindi per qualche $d \in M$ si ha:
+\[
+M \models \exists y\, \phi(d,y) \land \exists z\, ( \phi(d,z) \land \neg \phi(b,z) ).
+\]
+Da $M \prec N$, segue:
+\[
+N \models \exists y\, \phi(d,y) \land \exists z\, ( \phi(d,z) \land \neg \phi(b,z) ),
+\]
+e dunque $\phi(d,N) \in \{\phi(a_2,N), \ldots, \phi(a_k,N)\}$. Senza perdita di generalità, possiamo supporre $\phi(d,N) = \phi(a_2,N)$.
+
+Iterando questo ragionamento, troviamo per ogni $i = 1, \ldots, k$ un elemento $d_i \in M$ tale che:
+\[
+\phi(d_i,N) = \phi(a_i,N).
+\]
+Pertanto, ogni insieme della forma $\phi(a_i,N)$ è uguale a un insieme della forma $\phi(d_i,N)$ con $d_i \in M$, ovvero è definibile su $M$.
+
+\hfill $\Box$
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+\begin{theorem}
+Sia \( f: \mathbb{R} \to \mathbb{R} \). Allora sono equivalenti: 
+
+\(
+\text{i) } f \text{ continua}
+\)
+
+\(
+\text{ii) Per ogni } a \approx b \text{ finiti vale } f(a) \approx f(b).
+\)
+\end{theorem}
+
+\begin{proof}
+\( \text{i) } \Rightarrow \text{ii)} \)
+
+Siano \( a \approx b \) finiti. Allora per ogni \( \delta > 0 \) standard si ha \( |a-b| < \delta \). Da \( f \) continua si ha
+\( \lim_{x \to a} f(x) = f(a). \)
+
+Dal lemma precedente ottengo (visto che \( b \approx a \)) \(
+f(b) \approx \lim_{x \to a} f(x), \)
+
+cioè \( f(b) \approx f(a).\)
+
+
+\end{proof}
+
+
+\section{XEX 6 chap}
+
+
+\begin{esercizio}[6.8]
+$T_{dlo}$ is not $\lambda-cat$ for any $\lambda >\omega$.    
+\end{esercizio}
+
+\begin{proof}
+    Se $(A,<_{A}), \ (B,<_{B})$ sono linear order scrivo $A+B$ intendendo il linear order che si ottiene concatenando gli elementi di $B$ dopo quelli di $A$, cioè il linear order dato da $(A \sqcup B, <_{+})$, dove $c <_{+} d$ sse:
+    \begin{itemize}
+        \item $c \in A$ e $d \in B$
+        \item $c,d \in A$ e $c <_{A} d$
+        \item $c,d \in B$ e $c <_{B} d$
+    \end{itemize}
+
+    Esistono ordini lineari di qualsiasi cardinalità grazie ad Upward Skolem. Ne scegliamo uno per ogni cardinalità: siano $(L_\lambda)_{\lambda \geq \omega}$ gli ordini lineari scelti. Considero ora, per ogni $\lambda > \omega$, $L_{\omega}+ L_{\lambda}$ e $L_{\lambda}+ L_{\omega}$. Questi non sono isomorfi. Infatti per assurdo sia $f:L_{\omega}+ L_{\lambda} \to L_{\lambda}+ L_{\omega}$ isomorfismo e sia $a \in L_{\omega}$. Allora $\omega = |pred(a)| = |pred(f(a)| = \lambda > \omega$, assurdo. Quindi per ogni $\lambda > \omega$ ho trovato due modelli non isomorfi. Cioè la teoria non è $\lambda$-cat per ogni $\lambda > \omega$.
+\end{proof}
+
+
+
+
+\begin{esercizio}[6.9]
+    Prove that, in the language of strict orders, $\mathbb{Q} \prec \mathbb{R}$.
+\end{esercizio}
+
+\begin{proof}
+    $k: \mathbb{Q} \to \mathbb{R}, \ q \mapsto q$ è partial embedding. Dal momento che $T_{dlo}$ ha QE si deduce che $k$ è elementary map, cioè $\mathbb{Q} \prec \mathbb{R}$.
+\end{proof}
+
+
+
+
+\begin{esercizio}[6.10]
+    Let $L$ be the language of strict orders expanded with the constants $\{c_i : i \in \omega\}$. Let $T$ be the theory that extends $T_{dlo}$ with the axioms $c_i < c_{i+1}$ for all $i$. Prove that $T$ is complete. Find three non-isomorphic countable models of this theory.
+\end{esercizio}
+
+\begin{proof}
+    \begin{itemize}
+        \item $T$ è completa: Siano infatti $M',N' \models T$. Voglio mostrare che $M' \equiv N'$. Siano $M,N$ le rispettive riduzioni al linguaggio $\{<\}$. Allora:
+        \[M' \equiv N' \iff M \equiv_{\overline{c}} N \iff k:M \to N, \ c \mapsto c, \ dom(k) = c \text{ mappa elementare }\]
+
+        Osservo ora che:
+        \[
+        T \vdash c_i < c_{i+1} \text{ per ogni } i<\omega
+        \]
+
+        quindi $k$ è partial embedding. 
+        Poichè $T_{dlo}$ ha QE si conclude che $k$ è elementary map.
+
+        \item $3$ modelli numerabili non isomorfi: con la stessa notazione dell'esercizio 6.8:
+        \begin{enumerate}
+            \item $\mathbb{Q}$ con $c_i = i$.
+            \item $\mathbb{Q} + \mathbb{Q}$ con $c_i = -1/i$ nella prima copia di $\mathbb{Q}$
+            \item $\mathbb{Q} + {singoletto} + \mathbb{Q}$ con $c_i = -1/i$ nella prima copia di $\mathbb{Q}$
+        \end{enumerate}
+
+        Il secondo tra quelli enumerati è il modello saturo. Il primo è quello atomico. Si deduce anche che la teoria non può essere $\omega$-cat (anche se era già evidente dalle costanti).
+    \end{itemize}    
+\end{proof}
+
+
+
+
+
+\begin{theorem}[6.5]
+    Let $T$ theory without finite models, $\lambda$-cat for some $\lambda \geq |L|$. Then $T$ is complete. 
+\end{theorem}
+
+\begin{esercizio}[6.11]
+    Show that in theorem 6.5 the assumption $\lambda \geq |L|$ is necessary.    
+\end{esercizio}
+
+\begin{proof}
+    Considero $L = \{c_i : i<\omega_1\}$, $T = \{c_0 = c_1 \leftrightarrow c_i = c_j : i < j < \omega_1\}$. \begin{itemize}
+        \item $T$ non è completa: tra i modelli di cardinalità $\omega1$ alcuni soddisfano $c_0 = c_1$, altri soddisfano $c_0 \not = c_1$.
+
+        \item $T$ è $\omega$-cat: Osservo che $M \models T, |M| = \omega \Rightarrow M \models c_0 = c_1$. Di conseguenza presi due modelli numerabili, $M$ ed $N$, un isomorfismo è dato da una qualunque biezione tale che $c_0^M \mapsto c_0^N$.
+    \end{itemize}
+\end{proof}
+
+
+
+
+
+\chapter{Ricorsività}
+
+\end{document}
+
